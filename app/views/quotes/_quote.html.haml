@@ -1,0 +1,17 @@
+.well.well-large
+    .controls
+        %a{:href => "/quotes/#{quote.id}"}
+            = "\##{quote.id}"
+
+    %br
+
+    %blockquote
+        %p
+            = simple_format(quote.body)
+    %small
+        = quote.description
+        - if quote.tags.any?
+            %hr
+        - quote.tags.each do |tag|
+            %a.btn.btn-info.btn-small{:href => "/tags/#{tag.name}"}
+                = tag.name

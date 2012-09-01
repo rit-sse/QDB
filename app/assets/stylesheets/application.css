@@ -10,4 +10,12 @@
  *
  *= require_self
  *= require_tree .
+ 
  */
+
+.corner_logo{
+	position:relative;
+	top:-2px;
+	height:23px;
+	padding-right:5px;
+}

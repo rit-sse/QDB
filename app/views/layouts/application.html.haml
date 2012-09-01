@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title QDB
+    %meta{:charset => "utf-8"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    = stylesheet_link_tag :application, :media => "all"
+    = javascript_include_tag :application
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.brand{:href => "/"}
+            %img.corner_logo{:src => "/assets/SmallLogo.png"}
+            SSE QDB
+          %ul.nav
+            %li 
+              %a{:href=>"/quotes"} Quotes
+            %li 
+              %a{:href=>"/tags"} Tags
+
+          %form.navbar-search.pull-right{:action => "/search", :method => "post"}
+            %input.search-query{:type=>"text", :placeholder=>"Search", :name => "query"}
+
+    #container.container
+      %header
+        //= render 'layouts/navigation'
+        //= render 'layouts/messages'
+      #main{:role => "main"}
+        = yield
+      %footer
