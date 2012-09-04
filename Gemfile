@@ -42,3 +42,4 @@ gem 'jquery-rails'
 
 gem "twitter-bootstrap-rails", :group => :assets
 gem "haml-rails"
+gem "kaminari"

@@ -1,10 +1,10 @@
 class QuotesController < ApplicationController
-  http_basic_authenticate_with :name => "admin", :password => "Passw0rd", :except => [:index, :show, :new, :create]
+  http_basic_authenticate_with :name => APP_CONFIG["mod_user"], :password => APP_CONFIG["mod_pass"], :except => [:index, :show, :new, :create]
+
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.where(:approved => true)
-
+    @quotes = Quote.where(:approved => true).page params[:page]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quotes }
@@ -50,6 +50,7 @@ class QuotesController < ApplicationController
 
     tags = params[:tags].split(" ")
     tags.each do |tag_name|
+      tag_name = tag_name.downcase
       tag = Tag.find_by_name(tag_name)
       if not tag 
         tag = Tag.new({:name => tag_name})

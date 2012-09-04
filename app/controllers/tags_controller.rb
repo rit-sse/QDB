@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+   http_basic_authenticate_with :name => APP_CONFIG["mod_user"], :password => APP_CONFIG["mod_pass"], :except => [:index, :show, :new, :create]
   # GET /tags
   # GET /tags.json
   def index
