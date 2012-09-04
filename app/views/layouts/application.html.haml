@@ -20,8 +20,13 @@
             %li 
               %a{:href=>"/tags"} Tags
 
+          %a.btn.btn-primary.pull-right.new{:href => "/quotes/new"}
+            %i.icon-pencil
+
           %form.navbar-search.pull-right{:action => "/search", :method => "post"}
             %input.search-query{:type=>"text", :placeholder=>"Search", :name => "query"}
+
+
 
     #container.container
       %header

@@ -1,8 +1,9 @@
 class QuotesController < ApplicationController
+  http_basic_authenticate_with :name => "admin", :password => "Passw0rd", :except => [:index, :show, :new, :create]
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.all
+    @quotes = Quote.where(:approved => true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,10 +15,15 @@ class QuotesController < ApplicationController
   # GET /quotes/1.json
   def show
     @quote = Quote.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @quote }
+    if !@quote.approved
+      respond_to do |format|
+        format.html { render "not_found" }
+      end
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @quote }
+      end
     end
   end
 
@@ -55,7 +61,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
-        format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
+        format.html { render :created}
         format.json { render json: @quote, status: :created, location: @quote }
       else
         format.html { render action: "new" }

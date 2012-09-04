@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
+    @tags = Tag.all.select{|tag| tag.showable?}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,8 +14,14 @@ class TagsController < ApplicationController
   # GET /tags/1.json
   def show
     @tag = Tag.find_by_name(params[:id])
+    @quotes = []
     if @tag
-      @quotes = @tag.quotes
+      found_quotes = @tag.quotes
+      found_quotes.each do |quote|
+        if quote.approved
+          @quotes << quote
+        end
+      end
     end
 
     respond_to do |format|
@@ -47,7 +53,7 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
+        format.html { render "created" }
         format.json { render json: @tag, status: :created, location: @tag }
       else
         format.html { render action: "new" }

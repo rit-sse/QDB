@@ -12,11 +12,18 @@ class SearchController < ApplicationController
 	end
 
 	def search(query)
-		results = Set.new Quote.where("body LIKE ? OR description LIKE ?", query, query).all
+		results = Set.new Quote.where("(body LIKE ? OR description LIKE ?)", query, query).all
 		tags = Tag.where("name LIKE ?", query)
 		tags.each do |tag|
 			results.merge(tag.quotes)
 		end
-		results
+
+		final_results = Set.new
+		results.each do |result|
+			if result.approved
+				final_results << result
+			end
+		end
+		final_results
 	end
 end
