@@ -12,6 +12,6 @@
         = quote.description
         - if quote.tags.any?
             %hr
-        - quote.tags.each do |tag|
-            %a.btn.btn-info.btn-small{:href => "/tags/#{tag.name}"}
-                = tag.name
+    - quote.tags.each do |tag|
+        %a.btn.btn-info.btn-small.tag_button{:href => "/tags/#{tag.name}"}
+            = tag.name
