@@ -1,4 +1,5 @@
 Qdb2::Application.routes.draw do
+#  scope 'qdb' do
   resources :tags
 
   resources :quotes
@@ -66,4 +67,5 @@ Qdb2::Application.routes.draw do
 
   match "/admin/:id/approve" => "admin#approve"
   match "/admin/:id/deny" => "admin#deny"
+#  end
 end
