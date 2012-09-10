@@ -19,10 +19,8 @@
               %a{:href=>"/quotes"} Quotes
             %li 
               %a{:href=>"/tags"} Tags
-
-          %a.btn.btn-primary.pull-right.new{:href => "/quotes/new"}
+          = link_to "View the Quotes", "quotes/new", :class => "btn btn-primary pull-right new"
             %i.icon-pencil
-
           %form.navbar-search.pull-right{:action => "/search", :method => "post"}
             %input.search-query{:type=>"text", :placeholder=>"Search", :name => "query"}
 
