@@ -59,7 +59,7 @@ module Qdb2
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.prefix = "/qdb/assets"
+    #config.assets.prefix = "/qdb/assets"
     config.relative_url_root = '/qdb'
 
   end
