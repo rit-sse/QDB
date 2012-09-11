@@ -1,2 +1,2 @@
-= link_to "View the Quotes", "quotes", :class => "btn btn-info btn-large"
-= link_to "Submit a Quote", "quotes", :class => "btn btn-primary btn-large"
+= link_to "View the Quotes", {:controller => "quotes", :action => "index"}, :class => "btn btn-info btn-large"
+= link_to "Submit a Quote",  {:controller => "quotes", :action => "new"}, :class => "btn btn-primary btn-large"
