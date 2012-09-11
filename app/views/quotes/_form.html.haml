@@ -1,0 +1,29 @@
+= form_for(@quote) do |f|
+	%legend
+		Edit
+
+	%label{:for=>"quote[body]"}
+		Enter your quote in this field.
+	%textarea.span12{:type => "text", :name => "quote[body]", :id => "quote[body]"}
+		= @quote.body
+	
+	%br
+	%br
+	
+	%label{:for=>"quote[description]"}
+		Enter additional information about the quote, if any.
+	%textarea.span12{:type => "text", :name => "quote[description]", :id => "quote[description]"}
+		= @quote.description
+	
+	%br
+	%br
+
+	%label{:for=>"tags"}
+		Enter any tags (space deliniated)
+	%input{:type => "text", :name => "tags", :id => "tags", :value => @quote.tags.map(&:name).join(" ")}
+
+	%br
+	%br
+
+	%button.btn.btn-primary{:type => "submit"}
+		Submit

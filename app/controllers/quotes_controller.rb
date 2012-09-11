@@ -76,6 +76,20 @@ class QuotesController < ApplicationController
   def update
     @quote = Quote.find(params[:id])
 
+    tags = params[:tags].split(" ")
+    tags.each do |tag_name|
+      tag_name = tag_name.downcase
+      tag = Tag.find_by_name(tag_name)
+      if not tag 
+        tag = Tag.new({:name => tag_name})
+        tag.save
+      end
+
+      if not @quote.tags.include?(tag)
+        @quote.tags << tag
+      end
+    end
+
     respond_to do |format|
       if @quote.update_attributes(params[:quote])
         format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
