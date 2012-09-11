@@ -11,11 +11,11 @@
 
 	.span2
 		.btn-group.btn-group-vertical
-			%form{:action => "/admin/#{quote.id}/approve"}
+			%form{:action => "#{config.relative_url_root}/admin/#{quote.id}/approve"}
 				%input.btn.btn-success{:type=>'submit', :value => "Approve"} 
-			%form{:action => "/quotes/#{quote.id}/edit"}
+			%form{:action => "#{config.relative_url_root}/quotes/#{quote.id}/edit"}
 				%input.btn.btn-warning{:type=>'submit', :value => "Edit"}
-			%form{:action => "/admin/#{quote.id}/deny"}
+			%form{:action => "#{config.relative_url_root}/admin/#{quote.id}/deny"}
 				%input.btn.btn-danger{:type=>'submit', :value => "Deny"}
 
 	.clear
