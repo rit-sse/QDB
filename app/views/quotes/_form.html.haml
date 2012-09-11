@@ -1,6 +1,11 @@
 = form_for(@quote) do |f|
 	%legend
-		Edit
+		Edit 
+		|
+		= link_to 'Show', @quote
+		|
+		= link_to 'Back', quotes_path
+
 
 	%label{:for=>"quote[body]"}
 		Enter your quote in this field.
@@ -25,5 +30,13 @@
 	%br
 	%br
 
+	%label.checkbox{:for => "quote[approved]"}
+		Approved?
+		%input{:type => "checkbox", :value => @quote.approved, :name => "quote[approved]", :id => "quote[approved]"}
+
+	%br
+	%br
+
 	%button.btn.btn-primary{:type => "submit"}
 		Submit
+
