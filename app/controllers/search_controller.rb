@@ -11,19 +11,13 @@ class SearchController < ApplicationController
 		render :results
 	end
 
-	def search(query)
-		results = Set.new Quote.where("(body LIKE ? OR description LIKE ?)", query, query).all
-		tags = Tag.where("name LIKE ?", query)
-		tags.each do |tag|
-			results.merge(tag.quotes)
-		end
+	def index
+		@results = self.search(params[:id])
+		@query = params[:query]
+		render :results
+	end
 
-		final_results = Set.new
-		results.each do |result|
-			if result.approved
-				final_results << result
-			end
-		end
-		final_results
+	def search(query)
+		Quote.where(:approved => true).where("body LIKE ? or description LIKE ?", "%#{query}%", "%#{query}%").page params[:page]
 	end
 end

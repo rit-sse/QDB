@@ -11,17 +11,17 @@
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
-          %a.brand{:href => "/"}
-            %img.corner_logo{:src => "/assets/SmallLogo.png"}
+          = link_to  config.relative_url_root, :class => "brand" do
+            = image_tag "SmallLogo.png", :class => "corner_logo"
             SSE QDB
           %ul.nav
             %li 
-              %a{:href=>"/quotes"} Quotes
+              = link_to "Quotes", :quotes
             %li 
-              %a{:href=>"/tags"} Tags
-          = link_to "View the Quotes", "quotes/new", :class => "btn btn-primary pull-right new"
-            %i.icon-pencil
-          %form.navbar-search.pull-right{:action => "/search", :method => "post"}
+              = link_to "Tags", :tags
+          = link_to "", {:controller => "quotes", :action => "new"}, :class => "btn btn-primary pull-right new icon-pencil"
+            
+          %form.navbar-search.pull-right{:action => "#{config.relative_url_root}/search", :method => "post"}
             %input.search-query{:type=>"text", :placeholder=>"Search", :name => "query"}
 
 

@@ -4,3 +4,5 @@
 		= @query
 - @results.each do |quote|
 	= render :partial => 'quotes/quote', :locals => {:quote => quote}
+
+= paginate @results

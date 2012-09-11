@@ -3,3 +3,5 @@
 
 - @quotes.each do |quote|
 	= render :partial => 'quotes/quote', :locals => {:quote => quote}
+
+= paginate @quotes

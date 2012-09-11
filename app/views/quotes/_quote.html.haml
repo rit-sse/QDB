@@ -1,7 +1,6 @@
 .well.well-large
     .controls
-        %a{:href => "/quotes/#{quote.id}"}
-            = "\##{quote.id}"
+        = link_to quote.id, {:controller => "quotes", :action => "show", :id => quote}
 
     %br
 
@@ -13,5 +12,4 @@
         - if quote.tags.any?
             %hr
     - quote.tags.each do |tag|
-        %a.btn.btn-info.btn-small.tag_button{:href => "/tags/#{tag.name}"}
-            = tag.name
+        = link_to tag.name, {:controller => "tags", :action => "show", :id => tag}, :class => " btn btn-info btn-small tag_button"

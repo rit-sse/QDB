@@ -15,15 +15,11 @@ class TagsController < ApplicationController
   # GET /tags/1.json
   def show
     @tag = Tag.find_by_name(params[:id])
-    @quotes = []
-    if @tag
-      found_quotes = @tag.quotes
-      found_quotes.each do |quote|
-        if quote.approved
-          @quotes << quote
-        end
-      end
+    if !@tag
+      @tag = Tag.find(params[:id])
     end
+    
+    @quotes = @tag.quotes.where(:approved => true).page params[:page]
 
     respond_to do |format|
       format.html # show.html.erb
