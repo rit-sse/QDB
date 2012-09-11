@@ -19,3 +19,9 @@
 				%input.btn.btn-danger{:type=>'submit', :value => "Deny"}
 
 	.clear
+
+- if not @quotes.any?
+	.alert.alert-info
+		%h1 No quotes
+		%h4 You should be very concerned, the SSE is probably up to no good.
+		%br

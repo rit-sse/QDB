@@ -18,6 +18,6 @@ class AdminController < ApplicationController
 		quote.approved = false
 		quote.save
 
-		redirect_to "/admin"
+		redirect_to "#{config.relative_url_root}/admin"
 	end
 end
