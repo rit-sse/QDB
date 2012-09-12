@@ -1,0 +1,7 @@
+%b
+	= simple_format(quote.body)
+%i
+	= quote.description
+%small
+	Tags: 
+	= quote.tags.map(&:name).join(" ")

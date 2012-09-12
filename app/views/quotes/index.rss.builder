@@ -10,8 +10,13 @@ xml.rss :version => "2.0" do
 
     for quote in @quotes
       xml.item do
-        xml.title quote.body
-        xml.description quote.description
+        xml.title "Quote ##{quote.id}"
+        #xml.description xml.cdata!(render :partial => "quotes/quote_rss.html.haml", :locals => {:quote => quote})
+        xml.description do
+          xml.cdata do |data|
+            data << (render :partial => "quotes/quote_rss.html.haml", :locals => {:quote => quote})
+          end
+        end
         xml.pubDate quote.created_at.to_s(:rfc822)
         xml.link "http://sse.se.rit.edu/qdb/quotes/#{quote.id}"
         xml.guid "http://sse.se.rit.edu/qdb/quotes/#{quote.id}"
