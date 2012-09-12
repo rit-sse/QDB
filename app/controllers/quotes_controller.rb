@@ -59,14 +59,31 @@ class QuotesController < ApplicationController
 
       @quote.tags << tag
     end
-
+    @quote.id = 1
     respond_to do |format|
-      if @quote.save
-        format.html { render :created}
-        format.json { render json: @quote, status: :created, location: @quote }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
+      begin
+        if @quote.save
+          format.html { render :created}
+          format.json { render json: @quote, status: :created, location: @quote }
+        else
+          @quote.id = Quote.find(:all).map(&:id).max + 1
+          if @quote.save
+            format.html { render :created}
+            format.json { render json: @quote, status: :created, location: @quote }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @quote.errors, status: :unprocessable_entity }
+          end
+        end
+      rescue => e
+          @quote.id = Quote.find(:all).map(&:id).max + 1
+          if @quote.save
+            format.html { render :created}
+            format.json { render json: @quote, status: :created, location: @quote }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @quote.errors, status: :unprocessable_entity }
+          end
       end
     end
   end
