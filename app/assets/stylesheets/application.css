@@ -27,3 +27,11 @@
 a.tag_button{
 	margin-bottom: 5px;
 }
+
+.navbar-search{
+	border-color:#2E2E2E !important;
+}
+
+.btn-large{
+	margin-bottom: 5px !important;
+}
