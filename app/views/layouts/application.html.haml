@@ -11,6 +11,7 @@
     = csrf_meta_tags
 
     %link{:rel => "apple-touch-icon", :href => "#{config.relative_url_root}/assets/ios-app-icon.png"}
+    = auto_discovery_link_tag(:rss, "http://sse.se.rit.edu/qdb/quotes.rss")
   %body
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
