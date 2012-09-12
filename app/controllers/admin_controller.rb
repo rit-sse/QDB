@@ -10,7 +10,7 @@ class AdminController < ApplicationController
 		quote.approved = true
 		quote.save
 
-		redirect_to "/admin"
+		redirect_to "#{config.relative_url_root}/admin"
 	end
 
 	def deny
