@@ -29,10 +29,10 @@
 
 	%br
 	%br
-
-	%label.checkbox{:for => "quote[approved]"}
-		Approved?
-		%input{:type => "checkbox", :value => @quote.approved, :name => "quote[approved]", :id => "quote[approved]"}
+	
+	%label{:for => "quote[approved]"}
+		= f.check_box :approved
+		Approved
 
 	%br
 	%br
