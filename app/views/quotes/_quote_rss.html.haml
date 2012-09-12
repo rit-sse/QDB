@@ -2,9 +2,7 @@
 	= simple_format(quote.body)
 %i
 	= quote.description
-
-%br
-
+<br/>
 %small
 	Tags: 
 	= quote.tags.map(&:name).join(" ")
