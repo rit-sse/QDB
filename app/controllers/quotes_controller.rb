@@ -48,6 +48,7 @@ class QuotesController < ApplicationController
   # POST /quotes.json
   def create
     @quote = Quote.new(params[:quote])
+    @quote.id = Quote.find(:all).map(&:id).max + 1
 
     tags = params[:tags].split(" ")
     tags.each do |tag_name|
