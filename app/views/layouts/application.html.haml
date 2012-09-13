@@ -25,13 +25,13 @@
           = link_to "" "#{config.relative_url_root}/quotes/new", :alt => "new quote" do
             %i.btn.btn-primary.pull-right.new.icon-pencil
 
-          %a.btn.btn-inverse.pull-right{"data-toggle" => "collapse", "data-target" => ".nav-collapse"}
+          %a.btn.btn-inverse.pull-right.hidden-desktop{"data-toggle" => "collapse", "data-target" => ".nav-collapse"}
             %i.icon-chevron-down.icon-white
 
           %form.navbar-search.pull-right.visible-desktop{:action => "#{config.relative_url_root}/search", :method => "post"}
             %input.search-query{:type=>"text", :placeholder=>"Search", :name => "query"}
 
-          .nav-collapse.collapse  
+          .nav-collapse.collapse
             %ul.nav
               %li 
                 = link_to "Quotes", :quotes
