@@ -61,7 +61,7 @@ class QuotesController < ApplicationController
 
       @quote.tags << tag
     end
-    @quote.id = 1
+    
     respond_to do |format|
       begin
         if @quote.save
