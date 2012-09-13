@@ -68,6 +68,7 @@ Qdb2::Application.routes.draw do
   match "/admin/:id/approve" => "admin#approve"
   match "/admin/:id/deny" => "admin#deny"
   match "/rss.xml" => redirect("/qdb/quotes.rss")
+  match "/adminrss" => "admin#rss"
 
 #  end
 end

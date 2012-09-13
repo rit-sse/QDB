@@ -20,4 +20,9 @@ class AdminController < ApplicationController
 
 		redirect_to "#{config.relative_url_root}/admin"
 	end
+
+	def rss
+		@quotes = Quote.where(:approved => nil).all
+		render "to_mod.rss.builder"
+	end
 end
