@@ -62,5 +62,7 @@ module Qdb2
     #config.assets.prefix = "/qdb/assets"
     config.relative_url_root = '/qdb'
 
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
   end
 end

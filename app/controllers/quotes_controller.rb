@@ -48,7 +48,6 @@ class QuotesController < ApplicationController
   # POST /quotes.json
   def create
     @quote = Quote.new(params[:quote])
-    @quote.id = Quote.find(:all).map(&:id).max + 1
 
     tags = params[:tags].split(" ")
     tags.each do |tag_name|
@@ -58,34 +57,17 @@ class QuotesController < ApplicationController
         tag = Tag.new({:name => tag_name})
         tag.save
       end
-
       @quote.tags << tag
     end
     
     respond_to do |format|
-      begin
-        if @quote.save
-          format.html { render :created}
-          format.json { render json: @quote, status: :created, location: @quote }
-        else
-          @quote.id = Quote.find(:all).map(&:id).max + 1
-          if @quote.save
-            format.html { render :created}
-            format.json { render json: @quote, status: :created, location: @quote }
-          else
-            format.html { render action: "new" }
-            format.json { render json: @quote.errors, status: :unprocessable_entity }
-          end
-        end
-      rescue => e
-          @quote.id = Quote.find(:all).map(&:id).max + 1
-          if @quote.save
-            format.html { render :created}
-            format.json { render json: @quote, status: :created, location: @quote }
-          else
-            format.html { render action: "new" }
-            format.json { render json: @quote.errors, status: :unprocessable_entity }
-          end
+      if @quote.save
+        Notifications.notify("Quote \##{@quote.id}", @quote.body)
+        format.html { render :created}
+        format.json { render json: @quote, status: :created, location: @quote }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @quote.errors, status: :unprocessable_entity }
       end
     end
   end
