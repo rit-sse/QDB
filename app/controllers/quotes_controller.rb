@@ -76,7 +76,7 @@ class QuotesController < ApplicationController
   # PUT /quotes/1.json
   def update
     @quote = Quote.find(params[:id])
-
+    @quote.tags = []
     tags = params[:tags].split(" ")
     tags.each do |tag_name|
       tag_name = tag_name.downcase
