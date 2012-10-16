@@ -3,6 +3,10 @@ class AdminController < ApplicationController
 	
 	def index
 		@quotes = Quote.where(:approved => nil).all
+		respond_to do |format|
+			format.html
+			format.json {render json: @quotes}
+		end
 	end
 
 	def approve
