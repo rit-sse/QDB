@@ -1,7 +1,7 @@
 - @quotes.each do |quote|
 	.well.span8
 		%blockquote
-			= quote.body
+			= simple_format(quote.body)
 		
 		= quote.description
 		%hr
