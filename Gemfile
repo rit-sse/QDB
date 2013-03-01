@@ -38,8 +38,5 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-
-
-gem "twitter-bootstrap-rails", :group => :assets
 gem "haml-rails"
 gem "kaminari"
