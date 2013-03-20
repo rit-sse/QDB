@@ -23,8 +23,8 @@
 
 
 
-          = link_to "" "#{config.relative_url_root}/quotes/new", :alt => "new quote" do
-            %i.btn.btn-primary.pull-right.new.icon-pencil
+          = link_to "" "#{config.relative_url_root}/quotes/new", :alt => "new quote", class: "btn btn-primary pull-right new" do
+            %i.icon-pencil
 
           %a.btn.btn-inverse.pull-right.hidden-desktop{"data-toggle" => "collapse", "data-target" => ".nav-collapse"}
             %i.icon-chevron-down.icon-white
