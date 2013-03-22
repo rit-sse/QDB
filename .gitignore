@@ -17,4 +17,5 @@
 makefile
 
 .DS_Store
-confiy.yml
+config.yml
+public/assets/
