@@ -52,3 +52,12 @@ test: &test
   database: db/test.sqlite3
   timeout: 5000
 
+production:
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: qdb_production
+  pool: 5
+  min_messages: warning #magic sauce
+  username: qdb
+  password:
