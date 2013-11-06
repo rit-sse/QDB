@@ -29,8 +29,8 @@ task :deploy do
 end
   
 task :start_server do
-  if File.exists?('/web/tmp/pids/unicorn.pid')
-    pid = File.open('/web/tmp/pids/unicorn.pid').read.to_i
+  if File.exists?('/QDB/tmp/pids/unicorn.pid')
+    pid = File.open('/QDB/tmp/pids/unicorn.pid').read.to_i
     Process.kill("HUP", pid)
     puts 'Restarted the server'
   else
