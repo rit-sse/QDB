@@ -44,3 +44,7 @@ a.tag_button{
 .maintext{
 	width:85px;
 }
+
+.important-form-field {
+    display: none;
+}

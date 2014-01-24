@@ -1,17 +1,26 @@
+- if @quote.errors.any?
+	.alert.alert-danger
+		=pluralize(@quote.errors.count, "error")
+		prohibited this post from being saved:
+		%ul
+			- @quote.errors.messages.each do |msg|
+				%li= msg.last.first
+
+
 = form_for(@quote) do |f|
 	%legend
 		New Quote
 
 	%label{:for=>"quote[body]"}
 		Enter your quote in this field.
-	%textarea.span12{:type => "text", :name => "quote[body]", :id => "quote[body]"}
+	%textarea.span12{:type => "text", :name => "quote[body]", :id => "quote[body]", :rows => 6}
 	
 	%br
 	%br
 	
 	%label{:for=>"quote[description]"}
 		Enter additional information about the quote, if any.
-	%textarea.span12{:type => "text", :name => "quote[description]", :id => "quote[body]"}
+	%textarea.span12{:type => "text", :name => "quote[description]", :id => "quote[description]"}
 	
 	%br
 	%br
@@ -19,6 +28,11 @@
 	%label{:for=>"tags"}
 		Enter any tags (space deliniated)
 	%input{:type => "text", :name => "tags", :id => "tags"}
+
+	.important-form-field
+		%label{for: "quote[url]"} URL
+		%input{type: "text", name: "quote[url]", id: "quote[url]"}
+
 
 	%br
 	%br
