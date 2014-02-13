@@ -13,7 +13,7 @@ xml.rss :version => "2.0" do
         xml.title "Quote ##{quote.id}"
         #xml.description xml.cdata!(render :partial => "quotes/quote_rss.html.haml", :locals => {:quote => quote})
         xml.description do
-          xml.cdata do |data|
+          xml.html do |data|
             data << (render :partial => "quotes/quote_rss.html.haml", :locals => {:quote => quote})
           end
         end
