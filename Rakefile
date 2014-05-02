@@ -19,22 +19,36 @@ task :deploy do
     within "/QDB" do
       with rails_env: 'production' do
         execute :git, 'pull'
-        execute 'bundle', '--without development:test', 'install'      
-        rake 'db:migrate'     
-        rake 'assets:precompile'     
+        execute 'bundle', '--without development:test', 'install'
+        rake 'db:migrate'
+        rake 'assets:precompile'
         rake 'start_server'
       end
     end
   end
 end
-  
-task :start_server do
-  if File.exists?('/QDB/tmp/pids/unicorn.pid')
-    pid = File.open('/QDB/tmp/pids/unicorn.pid').read.to_i
-    Process.kill("HUP", pid)
-    puts 'Restarted the server'
-  else
-    puts 'Not running, starting the server...'
-    sh 'bundle exec unicorn -c config/unicorn.rb -D'
+
+namespace :server do
+
+  task :start do
+    if File.exists?('tmp/pids/unicorn.pid')
+      pid = File.read('tmp/pids/unicorn.pid').to_i
+      Process.kill("HUP", pid)
+      puts 'Restarted the server'
+    else
+      puts 'Not running, starting the server...'
+      sh 'unicorn -c unicorn.rb -E production -D'
+    end
   end
+
+  task :stop do
+    if File.exists?('tmp/pids/unicorn.pid')
+      pid = File.read('tmp/pids/unicorn.pid').to_i
+      Process.kill("QUIT", pid)
+      puts 'Stopped the server'
+    else
+      puts 'Server already down'
+    end
+  end
+
 end
