@@ -11,5 +11,5 @@
         = quote.description
         - if quote.tags.any?
             %hr
-    - quote.tags.each do |tag|
+    - quote.tags.uniq.each do |tag|
         = link_to tag.name, {:controller => "tags", :action => "show", :id => tag}, :class => " btn btn-info btn-small tag_button"

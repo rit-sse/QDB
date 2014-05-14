@@ -4,5 +4,5 @@
 	= quote.description
 <br/>
 %small
-	Tags: 
-	= quote.tags.map(&:name).join(" ")
+	Tags:
+	= quote.tags.uniq.map(&:name).join(" ")

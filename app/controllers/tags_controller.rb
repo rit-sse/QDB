@@ -18,8 +18,8 @@ class TagsController < ApplicationController
     if !@tag
       @tag = Tag.find(params[:id])
     end
-    
-    @quotes = @tag.quotes.where(:approved => true).page params[:page]
+
+    @quotes = @tag.quotes.where(:approved => true).uniq.page params[:page]
 
     respond_to do |format|
       format.html # show.html.erb
